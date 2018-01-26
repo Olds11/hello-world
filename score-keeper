@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+
+.green {
+color: green;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<h1><span id="scorePlayer1">0</span> to <span id="scorePlayer2">0</span></h1>
+
+<p>Playing to: <span id="playTo">5<span></p>
+
+<input type="number" id="inputTarget">
+<button id="p1">Player One</button>
+<button id="p2">Player Two</button>
+<button id="reset">Reset</button>
+
+
+<script type="text/javascript">
+
+var playerOne = document.querySelector("#p1");
+var playerTwo = document.querySelector("#p2");
+var reset = document.querySelector("#reset");
+var scorePlayer1 = document.getElementById("scorePlayer1");
+var scorePlayer2 = document.getElementById("scorePlayer2");
+var numInput = document.querySelector("input");
+var playTo = document.getElementById("playTo");
+var countOne = 0;
+var countTwo = 0;
+var gameOver = false;
+var winningScore= 5;
+
+
+playerOne.addEventListener("click", function () {
+	if (!gameOver) {
+		countOne = countOne + 1;
+		if (countOne === winningScore) {
+		gameOver = true;
+		scorePlayer1.classList.add("green");
+		}
+		scorePlayer1.innerHTML = countOne;
+	}
+	
+});
+
+playerTwo.addEventListener("click", function () {
+	if (!gameOver) {
+		countTwo = countTwo + 1;
+		if (countTwo === winningScore) {
+		gameOver = true;
+		scorePlayer2.classList.add("green");
+		}
+	scorePlayer2.innerHTML = countTwo;
+	}
+	
+
+});
+
+reset.addEventListener("click", function () {
+	resetFun();
+});
+
+
+numInput.addEventListener("change", function() {
+	winningScore = Number(numInput.value);
+	playTo.innerHTML = winningScore;
+	resetFun();
+});
+		
+function resetFun() {
+	countOne = 0;
+	countTwo = 0; 
+	scorePlayer1.innerHTML = countOne
+	scorePlayer2.innerHTML = countTwo
+	gameOver = false;
+	scorePlayer1.classList.remove("green");
+	scorePlayer2.classList.remove("green");
+}
+
+</script>
+
+</body>
+
+
+</html>
